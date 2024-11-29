@@ -1,20 +1,20 @@
 module github.com/streamingfast/substreams-sink
 
-go 1.21
+go 1.22
 
-toolchain go1.21.1
+toolchain go1.22.9
 
 require (
 	github.com/bobg/go-generics/v2 v2.2.2
 	github.com/cenkalti/backoff/v4 v4.2.1
 	github.com/spf13/cobra v1.7.0
-	github.com/streamingfast/bstream v0.0.2-0.20240906151250-c7bc58efc760
-	github.com/streamingfast/cli v0.0.4-0.20230825151644-8cc84512cd80
+	github.com/streamingfast/bstream v0.0.2-0.20241108153156-a5c6bc006f41
+	github.com/streamingfast/cli v0.0.4-0.20241119021815-815afa473375
 	github.com/streamingfast/derr v0.0.0-20230515163924-8570aaa43fe1
 	github.com/streamingfast/dmetrics v0.0.0-20240214191810-524a5c58fbaa
 	github.com/streamingfast/logging v0.0.0-20230608130331-f22c91403091
 	github.com/streamingfast/shutter v1.5.0
-	github.com/streamingfast/substreams v1.10.3
+	github.com/streamingfast/substreams v1.11.1
 	go.uber.org/zap v1.26.0
 )
 
@@ -25,7 +25,11 @@ require (
 	connectrpc.com/connect v1.16.1 // indirect
 	github.com/RoaringBitmap/roaring v1.9.1 // indirect
 	github.com/alecthomas/participle v0.7.1 // indirect
+	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/bits-and-blooms/bitset v1.12.0 // indirect
+	github.com/bobg/go-generics/v3 v3.4.0 // indirect
+	github.com/charmbracelet/lipgloss v1.0.0 // indirect
+	github.com/charmbracelet/x/ansi v0.4.2 // indirect
 	github.com/chzyer/readline v1.5.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
@@ -34,17 +38,21 @@ require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jhump/protoreflect v1.14.0 // indirect
 	github.com/lithammer/dedent v1.1.0 // indirect
+	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/manifoldco/promptui v0.9.0 // indirect
+	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mschoch/smat v0.2.0 // indirect
+	github.com/muesli/termenv v0.15.3-0.20240618155329-98d742f6907a // indirect
 	github.com/pelletier/go-toml/v2 v2.0.6 // indirect
+	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/schollz/closestmatch v2.1.0+incompatible // indirect
 	github.com/sethvargo/go-retry v0.2.3 // indirect
 	github.com/spf13/afero v1.10.0 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
-	github.com/streamingfast/dstore v0.1.1-0.20240826190906-91345d4a31f2 // indirect
+	github.com/streamingfast/dstore v0.1.1-0.20241011152904-9acd6205dc14 // indirect
 	github.com/subosito/gotenv v1.4.2 // indirect
 	github.com/teris-io/shortid v0.0.0-20171029131806-771a37caa5cf // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.49.0 // indirect
@@ -111,9 +119,9 @@ require (
 	golang.org/x/mod v0.17.0 // indirect
 	golang.org/x/net v0.23.0 // indirect
 	golang.org/x/oauth2 v0.18.0 // indirect
-	golang.org/x/sys v0.24.0 // indirect
+	golang.org/x/sys v0.25.0 // indirect
 	golang.org/x/term v0.20.0 // indirect
-	golang.org/x/text v0.16.0 // indirect
+	golang.org/x/text v0.18.0 // indirect
 	google.golang.org/api v0.172.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/genproto v0.0.0-20240227224415-6ceb2ff114de // indirect
