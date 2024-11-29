@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.5.0
+
+* Bumped substreams to v1.11.1
+
 ## v0.4.2
 
 * Bumped substreams to v1.10.3
@@ -13,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## v0.4.1
 
 * Bumped substreams to v1.8.1
-* Add a `NoopMode` enabling to request tier1 in a noop mode (Processing no data while being live). 
+* Add a `NoopMode` enabling to request tier1 in a noop mode (Processing no data while being live).
 
 ## v0.4.0
 
@@ -23,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## v0.3.5
 
 * Fix another case where 'infinite-retry' would not work and the program would stop on an error.
-* Enable multiple substreams authentication methods (API key, JWT), using flags `--api-key-envvar` and `--api-token-envvar`. 
+* Enable multiple substreams authentication methods (API key, JWT), using flags `--api-key-envvar` and `--api-token-envvar`.
 * Deprecates the use of `SF_API_TOKEN` environment variable, now use default `SUBSTREAMS_API_TOKEN` or set your own using `--api-token-envvar`
 
 ## v0.3.4
@@ -223,16 +227,16 @@ sinkOptions := []sink.Option{...}
 // sinkOptions := append(sinkOptions, sink.WithFinalBlocksOnly())
 
 sink, err = sink.New(
-	mode,
-	s.Pkg.Modules,
-	s.OutputModule,
-	s.OutputModuleHash,
-	s.handleBlockScopeData,
-	s.ClientConfig,
-	steps,
-	s.logger,
-	s.tracer,
-	sinkOptions...,
+ mode,
+ s.Pkg.Modules,
+ s.OutputModule,
+ s.OutputModuleHash,
+ s.handleBlockScopeData,
+ s.ClientConfig,
+ steps,
+ s.logger,
+ s.tracer,
+ sinkOptions...,
 )
 if err != nil { ... }
 
@@ -252,14 +256,14 @@ sinkOptions := []sink.Option{sink.WithBlockRange(s.blockRange)}
 // sinkOptions := append(sinkOptions, sink.WithFinalBlocksOnly())
 
 sink, err = sink.New(
-	mode,
-	s.Pkg.Modules,
-	s.OutputModule,
-	s.OutputModuleHash,
-	s.ClientConfig,
-	s.logger,
-	s.tracer,
-	sinkOptions...,
+ mode,
+ s.Pkg.Modules,
+ s.OutputModule,
+ s.OutputModuleHash,
+ s.ClientConfig,
+ s.logger,
+ s.tracer,
+ sinkOptions...,
 )
 if err != nil { ... }
 
@@ -286,36 +290,36 @@ Errors coming out of the handler(s) are not retried by default anymore. This bec
 
 The `sink.Cursor` backing implementation changed which will now avoid the need to pass to which block the cursor points to. The block pointed to is now extracted directly from the cursor value.
 
-- `sink.NewCursor(cursor, block)` becomes simply `sink.NewCursor(cursor)`.
+* `sink.NewCursor(cursor, block)` becomes simply `sink.NewCursor(cursor)`.
 
 ### Added
 
-- Added `sink.NewFromViper` to easily create an instance from viper predefined flags, expected that `cli.ConfigureViper` or `cli.ConfigureViperForCommand` has been used, use `sink.AddFlagsToSet` to add flags to a flag set.
-    - This new method make it much easier to maintain the a sink flags and configures it from flags. This changelog will list changes made to flags so when updating, you can copy it over to your own changelog.
+* Added `sink.NewFromViper` to easily create an instance from viper predefined flags, expected that `cli.ConfigureViper` or `cli.ConfigureViperForCommand` has been used, use `sink.AddFlagsToSet` to add flags to a flag set.
+  * This new method make it much easier to maintain the a sink flags and configures it from flags. This changelog will list changes made to flags so when updating, you can copy it over to your own changelog.
 
-- Added `sink.AddFlagsToSet` to easily add all sinker flags to a `pflag.FlagSet` instance.
+* Added `sink.AddFlagsToSet` to easily add all sinker flags to a `pflag.FlagSet` instance.
 
-- Added `sink.WithBlockRange` sinker `Option` to limit the `Sinker` to a specific range (runs for whole chain if unset).
+* Added `sink.WithBlockRange` sinker `Option` to limit the `Sinker` to a specific range (runs for whole chain if unset).
 
-- Added `sink.WithLivenessChecker` sinker `Option` to configure a liveness check on the sinker instance.
+* Added `sink.WithLivenessChecker` sinker `Option` to configure a liveness check on the sinker instance.
 
 ### Changed
 
-- Stats are printed each 15s when logger level is info or higher and 5s when it's debug or lower.
+* Stats are printed each 15s when logger level is info or higher and 5s when it's debug or lower.
 
-- **Deprecation** The flag `--irreversible-only` is deprecated, use `--final-blocks-only` instead.
+* **Deprecation** The flag `--irreversible-only` is deprecated, use `--final-blocks-only` instead.
 
-- **Breaking** The `sink.New` signature changed, handlers
+* **Breaking** The `sink.New` signature changed, handlers
 
-- **Breaking** The `sink.New` signature changed
-    - The `sink.BlockScopedDataHandler` handler must not be passed in the constructor anymore.
-    - The `forkSteps` arguments has been removed.
+* **Breaking** The `sink.New` signature changed
+  * The `sink.BlockScopedDataHandler` handler must not be passed in the constructor anymore.
+  * The `forkSteps` arguments has been removed.
 
-- **Breaking** The `sink.Sinker` field `BlockScopedDataHandler` has been removed (renamed and made private).
+* **Breaking** The `sink.Sinker` field `BlockScopedDataHandler` has been removed (renamed and made private).
 
-- **Breaking** Type name `sink.BlockScopeDataHandler` signature changed, the argument `data` is now of type `pbsubstreamsrpc.BlockScopedData` (imported via `pbsubstreamsrpc "github.com/streamingfast/substreams/pb/sf/substreams/rpc/v2"`).
+* **Breaking** Type name `sink.BlockScopeDataHandler` signature changed, the argument `data` is now of type `pbsubstreamsrpc.BlockScopedData` (imported via `pbsubstreamsrpc "github.com/streamingfast/substreams/pb/sf/substreams/rpc/v2"`).
 
 ## v0.1.0
 
-- **Breaking** Type name `sink.BlockScopeDataHandler` has been renamed to `sink.BlockScopedDataHandler` (note the `d` on `Scoped`).
+* **Breaking** Type name `sink.BlockScopeDataHandler` has been renamed to `sink.BlockScopedDataHandler` (note the `d` on `Scoped`).
 First official release of the library, latest release until refactor to support the new upcoming Substreams V2 RPC protocol.
