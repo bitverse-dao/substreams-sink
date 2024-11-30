@@ -1,6 +1,7 @@
 package sink
 
 import (
+	"sync"
 	"time"
 
 	"github.com/streamingfast/bstream"
@@ -16,6 +17,7 @@ type Stats struct {
 	progressBlockRate *dmetrics.AvgRatePromGauge
 	undoMsgRate       *dmetrics.AvgRatePromCounter
 
+	mu        sync.RWMutex
 	lastBlock bstream.BlockRef
 	logger    *zap.Logger
 }
@@ -35,6 +37,8 @@ func newStats(logger *zap.Logger) *Stats {
 }
 
 func (s *Stats) RecordBlock(block bstream.BlockRef) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	s.lastBlock = block
 }
 
@@ -59,7 +63,8 @@ func (s *Stats) Start(each time.Duration) {
 }
 
 func (s *Stats) LogNow() {
-
+	s.mu.RLock()
+	defer s.mu.RUnlock()
 	// Logging fields order is important as it affects the final rendering, we carefully ordered
 	// them so the development logs looks nicer.
 	s.logger.Info("substreams stream stats",
